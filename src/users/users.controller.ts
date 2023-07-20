@@ -3,7 +3,9 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ValidationException } from 'src/utlis/ValidationException';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -26,7 +28,13 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
+  }
+
+
+  @Get(':id/:nombre')
+  findAlex(@Param('id') id: string, @Param('nombre') nombre: string) {
+    return this.usersService.findAlex(id,nombre)
   }
 
   @Patch(':id')

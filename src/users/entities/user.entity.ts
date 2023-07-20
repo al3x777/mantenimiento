@@ -20,6 +20,10 @@ export class User {
 
   @Prop()
   tipoUsuario: TipoUsuario;
+
+  @Prop({type:'object'})
+  _id: Object;
+
 }
 
 export type UsersDocument = User & Document;
